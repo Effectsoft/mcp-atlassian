@@ -31,8 +31,18 @@ FROM python:3.10-slim
 WORKDIR /app
 
 COPY --from=uv --chown=app:app /app/.venv /app/.venv
+COPY --from=uv --chown=app:app /app/src /app/src
+
+# Create a non-root user
+RUN useradd -m app
+USER app
 
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
+ENV PYTHONPATH="/app/src"
 
-ENTRYPOINT ["mcp-atlassian"]
+# Expose the port that the server will run on
+EXPOSE 8000
+
+# Run the server with proper SSE transport
+ENTRYPOINT ["mcp-atlassian", "--transport", "sse", "--port", "8000"]
