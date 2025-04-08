@@ -23,9 +23,7 @@ https://github.com/user-attachments/assets/7fe9c488-ad0c-4876-9b54-120b666bb785
 | Product | Deployment Type | Support Status              |
 |---------|----------------|-----------------------------|
 | **Confluence** | Cloud | ✅ Fully supported           |
-| **Confluence** | Server/Data Center | ✅ Supported (version 6.0+)  |
 | **Jira** | Cloud | ✅ Fully supported           |
-| **Jira** | Server/Data Center | ✅ Supported (version 8.14+) |
 
 ## Setup Guide
 
@@ -44,14 +42,18 @@ First, generate the necessary authentication tokens for Confluence & Jira:
 8. Run the container: docker run -p 8000:8000 --env-file .env mcp/atlassian
 
 Add MCP-configuration to your Environment.
-For Curson:
+For Cursor:
 
-  "mcpServers": {
-    "Atlassian MCP": {
-      "url": "http://localhost:8000/sse"
+```bash
+{
+    "mcpServers": {
+      "Atlassian MCP": {
+        "url": "http://localhost:8000/sse"
+      }
     }
-  }
-
+}
+```
+  
 ### 2. Installation
 
 Choose one of these installation methods:
