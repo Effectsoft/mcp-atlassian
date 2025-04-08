@@ -8,9 +8,6 @@
 
 Model Context Protocol (MCP) server for Atlassian products (Confluence and Jira). This integration supports both Confluence & Jira Cloud and Server/Data Center deployments.
 
-### Feature Demo
-![Jira Demo](https://github.com/user-attachments/assets/61573853-c8a8-45c9-be76-575f2b651984)
-
 <details>
 <summary>Confluence Demo</summary>
 
