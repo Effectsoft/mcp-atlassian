@@ -520,6 +520,11 @@ async def list_tools() -> list[Tool]:
                                     "description": "Optional comment for this version",
                                     "default": "",
                                 },
+                                "is_markdown": {
+                                    "type": "boolean",
+                                    "description": "Whether to convert the page to markdown format",
+                                    "default": False,
+                                },
                             },
                             "required": ["page_id", "title", "content"],
                         },
@@ -1364,20 +1369,21 @@ async def call_tool(name: str, arguments: Any) -> Sequence[TextContent]:
             content = arguments.get("content")
             is_minor_edit = arguments.get("is_minor_edit", False)
             version_comment = arguments.get("version_comment", "")
+            is_markdown = arguments.get("is_markdown", False)  # Default to False to preserve storage format
 
             if not page_id or not title or not content:
                 raise ValueError(
                     "Missing required parameters: page_id, title, and content are required."
                 )
 
-            # Update the page (with automatic markdown conversion)
+            # Update the page (with automatic markdown conversion only if is_markdown is True)
             updated_page = ctx.confluence.update_page(
                 page_id=page_id,
                 title=title,
                 body=content,
                 is_minor_edit=is_minor_edit,
                 version_comment=version_comment,
-                is_markdown=True,
+                is_markdown=is_markdown,
             )
 
             # Format results
