@@ -40,8 +40,8 @@ First, generate the necessary authentication tokens for Confluence & Jira:
 4. Paste the token in the .env file
 5. Update the rest of the .env file
 6. Install Docker Desktop
-7. Build the docker container with: docker build -t mcp-atlassian . 
-8. Run the container: docker run -p 8000:8000 --env-file .env mcp-atlassian
+7. Build the docker container with: docker build -t mcp/atlassian:latest . 
+8. Run the container: docker run -p 8000:8000 --env-file .env mcp/atlassian
 
 Add MCP-configuration to your Environment.
 For Curson:
